@@ -7,13 +7,13 @@ Copy to `models/MODEL_CARD-fu-vX.md` alongside the weights. Tag it into the HF r
 language: en
 license: apache-2.0
 tags: [hair, follicle, object-detection, yolo, hair-restoration, research-only]
-datasets: openhairstack/follicle-obb-v0.1
+datasets: openhairstack/follicle-v0.1
 
 ## Model
 
-- **Architecture:** yolo11n (or yolo11n-obb)
+- **Architecture:** yolo11n (v0.1, axis-aligned detection). Future OBB variants: yolo11n-obb.
 - **Weights file:** `best.pt` — sha256: __________
-- **Task:** follicular-unit detection + hair-count class (fu1–fu5)
+- **Task:** follicular-unit detection + hair-count class (fu1–fu5; exact counts, fu5 = 5+)
 - **Trained:** date · hardware · runtime
 - **Run provenance:** `provenance.json` from `train.py` (dataset manifest, seed, versions)
 
@@ -25,7 +25,7 @@ datasets: openhairstack/follicle-obb-v0.1
 
 Per-class:
 
-| class | mAP50 | P | R | n_val_instances |
+| class | mAP50-95 | P | R | n_val_instances |
 |---|---|---|---|---|
 | fu1 | | | | |
 | fu2 | | | | |
@@ -38,7 +38,7 @@ Per-class:
 
 ## Training data
 
-`follicle-obb-v0.1` (CC BY 4.0, 688 source images) — see `data-pipeline/DATASETS.md` for per-source attribution. Data licenses propagate: cite upstream too.
+`follicle-v0.1` (CC BY 4.0, 688 source images) — see `data-pipeline/DATASETS.md` for per-source attribution. Data licenses propagate: cite upstream too.
 
 ## Ethical & safety notes
 

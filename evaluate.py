@@ -1,7 +1,7 @@
 """Evaluate a trained model and append a benchmark row.
 
 Usage:
-    python evaluate.py --weights runs/fu-v0.1/weights/best.pt --data ../data-pipeline/data/follicle-obb-v0.1 --split val
+    python evaluate.py --weights runs/fu-v0.1/weights/best.pt --data ../data-pipeline/data/follicle-v0.1 --split val
 """
 from __future__ import annotations
 
