@@ -12,7 +12,9 @@ datasets: openhairstack/follicle-v0.1
 ## Model Details
 
 - **Architecture:** YOLO11n (v0.1, axis-aligned detection)
-- **Weights files:** `best.pt` (PyTorch), `model.onnx` (ONNX Runtime Web client-side)
+- **Weights files:**
+  - `best.pt` (PyTorch, sha256: `568c5a77629c125ea3c0e04c2d9bf7f698103e5ea98451813e24256066d1d7fe`)
+  - `model.onnx` (ONNX Runtime Web client-side, sha256: `9c0a09869735d99501bfdedad957ffa22f3be13e9f8cf7ffe7df6f08814dd7b2`)
 - **Task:** Follicular-unit detection + hair-count classification (`fu1`–`fu5`; exact counts, `fu5` = 5+)
 - **Training Platform:** Google Colab (Tesla T4 GPU, 60 epochs, imgsz=640, batch=16, seed=0)
 - **Dataset:** `follicle-v0.1` (688 source trichoscopic images, CC BY 4.0; Roboflow Universe `ranaudio/hair-follicle-detection-gjgak`)
