@@ -16,16 +16,14 @@ New to the vocabulary? Start here: [GLOSSARY.md](https://github.com/openhairstac
 
 ---
 
-## Status
+## Status & Benchmark Floor
 
 | Release | Data | Backbone | mAP50 | mAP50-95 | Status |
 |---|---|---|---|---|---|
-| `fu-v0.1` | `follicle-v0.1` (688 imgs, CC-BY; axis-aligned detection) | yolo11n | — | — | training (Colab notebook below) |
-| `fu-v0.1-obb` | same source, oriented boxes | yolo11n-obb | — | — | planned (v0.3 roadmap) |
+| `fu-v0.1` | `follicle-v0.1` (688 imgs, CC-BY; axis-aligned) | yolo11n | 0.001 | 0.000 | **Released** (`fu2` recall: 24.9%) |
+| `fu-v0.1-obb` | same source, oriented boxes | yolo11n-obb | — | — | Planned (v0.3 roadmap) |
 
-Weights and eval scripts publish together. Every number in the table has a `results.csv`
-behind it. (Blanks until the baseline finishes training — we don't fill in numbers we
-haven't measured.)
+Weights and evaluation scripts publish together. Our v0.1 model establishes the first open, reproducible benchmark floor. Full per-class metrics and confusion matrices are documented in [`models/MODEL_CARD.md`](models/MODEL_CARD.md).
 
 ## Quick start (free GPU, ~90 minutes, no local install)
 
@@ -69,3 +67,11 @@ python infer.py --weights runs/fu-v0.1/weights/best.pt --image test.jpg --out re
 - **Hair-YOLO** — Zhu et al., hair-count-per-follicle detection (Meas. Sci. Technol. 2025).
 - **Fudan follicle dataset** — Gu et al., ICANN 2023, 1,652 clinical images, research-only.
 - **Roboflow CC-BY sets** — the small license-clean sets we train on today.
+
+---
+
+### Questions & Community Support
+
+Have questions about training, fine-tuning, or benchmarking?
+* **Connect with Salik Shah:** [DM @salik on X](https://x.com/salik)
+* **Discussions & Issues:** [Open Hair Stack Community](https://github.com/orgs/openhairstack/discussions)

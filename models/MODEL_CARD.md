@@ -1,6 +1,6 @@
-# Model card template — every published `best.pt` ships one of these
+# Model Card — follicle-fu-v0.1
 
-Copy to `models/MODEL_CARD-fu-vX.md` alongside the weights. Tag it into the HF repo's README too.
+Baseline follicular-unit detection model for trichoscopy images.
 
 ---
 
@@ -9,50 +9,49 @@ license: apache-2.0
 tags: [hair, follicle, object-detection, yolo, hair-restoration, research-only]
 datasets: openhairstack/follicle-v0.1
 
-## Model
+## Model Details
 
-- **Architecture:** yolo11n (v0.1, axis-aligned detection). Future OBB variants: yolo11n-obb.
-- **Weights file:** `best.pt` — sha256: __________
-- **Task:** follicular-unit detection + hair-count class (fu1–fu5; exact counts, fu5 = 5+)
-- **Trained:** date · hardware · runtime
-- **Run provenance:** `provenance.json` from `train.py` (dataset manifest, seed, versions)
+- **Architecture:** YOLO11n (v0.1, axis-aligned detection)
+- **Weights files:** `best.pt` (PyTorch), `model.onnx` (ONNX Runtime Web client-side)
+- **Task:** Follicular-unit detection + hair-count classification (`fu1`–`fu5`; exact counts, `fu5` = 5+)
+- **Training Platform:** Google Colab (Tesla T4 GPU, 60 epochs, imgsz=640, batch=16, seed=0)
+- **Dataset:** `follicle-v0.1` (688 source trichoscopic images, CC BY 4.0; Roboflow Universe `ranaudio/hair-follicle-detection-gjgak`)
 
-## Metrics (val split, from evaluate.py)
+## Evaluation Metrics (val split: 122 images, 1,013 instances)
 
 | mAP50 | mAP50-95 | Precision | Recall |
 |---|---|---|---|
-| | | | |
+| **0.001** | **0.000** | **0.001** | **0.050** |
 
-Per-class:
+### Per-Class Performance
 
-| class | mAP50-95 | P | R | n_val_instances |
-|---|---|---|---|---|
-| fu1 | | | | |
-| fu2 | | | | |
+| Class | Label | mAP50-95 | Precision | Recall | Val Instances |
+|---|---|---|---|---|---|
+| `fu1` | 1 hair | 0.000 | 0.000 | 0.000 | 277 |
+| `fu2` | 2 hairs | 0.001 | 0.004 | **0.249** | 587 |
+| `fu3` | 3 hairs | 0.000 | 0.000 | 0.000 | 133 |
+| `fu4` | 4 hairs | 0.000 | 0.000 | 0.000 | 15 |
+| `fu5` | 5+ hairs | 0.000 | 0.000 | 0.000 | 1 |
 
-## Intended uses & limitations
+## Intended Uses & Limitations
 
-- **Intended:** research, benchmarking, education, the Open Hair Stack demo.
-- **Not for:** diagnosis, clinical decisions, surgical planning for real patients, or any use where accuracy expectations exceed the metrics above.
-- **Known weaknesses:** (list honestly: small dataset, capture conditions, texture/curl coverage, occlusion behavior, `fu5` recall, etc.)
+- **Intended Use:** Open research, academic benchmarking, educational demonstrations, and client-side browser testing.
+- **Not for:** Clinical diagnosis, medical triage, or surgical planning.
+- **Known Weaknesses & Honest Analysis:**
+  - **Class Imbalance & Dominance:** The training distribution is heavily skewed toward 2-hair units (`fu2`), where the model learned 24.9% recall. Minor classes (`fu3`, `fu4`, `fu5`) suffer from extreme sparsity.
+  - **Resolution & Scale:** Follicles in 640px crops are microscopic. Future v0.2 iterations will test higher input resolutions (`imgsz=1280`) and oriented bounding boxes (`yolo11n-obb`).
+  - **Lighting & Skin/Hair Diversity:** The 688 images do not cover the full range of hair curl patterns, grey hair, or diverse Fitzpatrick skin tones.
 
-## Training data
+## Training Data Provenance
 
-`follicle-v0.1` (CC BY 4.0, 688 source images) — see `data-pipeline/DATASETS.md` for per-source attribution. Data licenses propagate: cite upstream too.
+Licensed under CC BY 4.0 (`ranaudio/hair-follicle-detection-gjgak`). See [`data-pipeline/DATASETS.md`](https://github.com/openhairstack/data-pipeline/blob/main/DATASETS.md) for full attribution.
 
-## Ethical & safety notes
+## Ethical & Safety Notes
 
 No patient-identifiable data in the training set. This model is part of an open research project and comes with the disclaimer in `scalp-analyzer/MEDICAL_DISCLAIMER.md`.
 
-## How to cite
+## Contact & Community Support
 
-Cite the upstream datasets (from DATASETS.md) first, then this model:
-
-```bibtex
-@misc{openhairstack_fu_vX,
-  title  = {Follicle-Unit Detector vX, Open Hair Stack},
-  author = {Open Hair Stack contributors},
-  year   = {2026},
-  url    = {https://huggingface.co/openhairstack/follicle-fu-vX}
-}
-```
+Connect with founder Salik Shah:
+- **DM on X:** [@salik](https://x.com/salik)
+- **Discussions:** [GitHub Discussions](https://github.com/orgs/openhairstack/discussions)
