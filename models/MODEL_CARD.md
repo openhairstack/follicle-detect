@@ -52,8 +52,8 @@ Licensed under CC BY 4.0 (`ranaudio/hair-follicle-detection-gjgak`). See [`data-
 
 No patient-identifiable data in the training set. This model is part of an open research project and comes with the disclaimer in `scalp-analyzer/MEDICAL_DISCLAIMER.md`.
 
-## Contact & Community Support
+## Contact & Discussions
 
-Connect with founder Salik Shah:
-- **DM on X:** [@salik](https://x.com/salik)
+A project by Salik Shah:
+- **Contact on X:** [@salik](https://x.com/salik)
 - **Discussions:** [GitHub Discussions](https://github.com/orgs/openhairstack/discussions)
